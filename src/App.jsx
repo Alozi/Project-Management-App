@@ -5,14 +5,21 @@ import StartScreen from "./components/StartScreen";
 import FormCreateProject from "./components/FormCreateProject";
 
 function App() {
-  const [noProjects, setNoProjects] = useState(false);
+  const [isStartSreenOpen, setIsStartSreenOpen] = useState(true);
+  const [projects, setProjects] = useState([]);
+  
+  console.log(projects);
+
+  function createNewProject() {
+    setIsStartSreenOpen(false);
+  }
 
   return (
     <>
       <main className="h-screen my-8 flex gap-8">
-        <Aside />
-        {noProjects && <StartScreen />}
-        {!noProjects && <FormCreateProject />}
+        <Aside createNewProject={createNewProject} />
+        {isStartSreenOpen && <StartScreen createNewProject={createNewProject} />}
+        {!isStartSreenOpen && <FormCreateProject projects={projects} setProjects={setProjects} />}
       </main>
     </>
   );

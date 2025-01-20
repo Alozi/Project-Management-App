@@ -1,31 +1,32 @@
-import { useState, useRef } from "react";
+import { useRef } from "react";
 
-export default function FormCreateProject() {
+export default function FormCreateProject({ projects, setProjects }) {
   const projectTitle = useRef("");
   const projectDesc = useRef("");
   const projectDate = useRef("");
 
-  const [newProject, setNewProject] = useState({
-    title: "",
-    desc: "",
-    date: "",
-  });
-
   function handleClick() {
-    setNewProject(() => {
-      return {
-        title: projectTitle.current.value,
-        desc: projectDesc.current.value,
-        date: projectDate.current.value,
-      };
-    });
+    if (
+      projectTitle.current.value != "" &&
+      projectDesc.current.value != "" &&
+      projectDate.current.value != ""
+    ) {
+      setProjects((prevProjects) => {
+        return [
+          ...prevProjects,
+          {
+            title: projectTitle.current.value,
+            desc: projectDesc.current.value,
+            date: projectDate.current.value,
+          },
+        ];
+      });
+    }
   }
-
-  console.log(newProject);
 
   return (
     <div>
-      <p className="flex gap-1 my-4">
+      <p className="flex gap-4 my-4 justify-end">
         <button className="text-stone-800 hover:text-stone-950">Cancel</button>
         <button
           onClick={handleClick}
@@ -35,7 +36,7 @@ export default function FormCreateProject() {
         </button>
       </p>
       <label className="text-sm font-bold uppercase text-stone-500">
-        Title
+        Title*
       </label>
       <input
         ref={projectTitle}
@@ -43,20 +44,24 @@ export default function FormCreateProject() {
         className="w-full p-1 border-b-2 rounded-sm border-stone-300 bg-stone-200 text-stone-600 focus:outline-none focus:border-stone-600"
       />
       <label className="text-sm font-bold uppercase text-stone-500">
-        Description
+        Description*
       </label>
       <textarea
         ref={projectDesc}
         className="w-full p-1 border-b-2 rounded-sm border-stone-300 bg-stone-200 text-stone-600 focus:outline-none focus:border-stone-600"
       />
       <label className="text-sm font-bold uppercase text-stone-500">
-        Due Date
+        Due Date*
       </label>
       <input
         ref={projectDate}
         type="date"
         className="w-full p-1 border-b-2 rounded-sm border-stone-300 bg-stone-200 text-stone-600 focus:outline-none focus:border-stone-600"
       />
+
+      <p className="mt-4 text-sm font-bold uppercase text-stone-500 text-right underline underline-offset-2">
+        * - this input shoudn't be empty
+      </p>
     </div>
   );
 }
