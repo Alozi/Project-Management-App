@@ -1,8 +1,8 @@
 import Image from "../assets/no-projects.png";
 
-export default function StartScreen({ createNewProject }) {
+export default function StartScreen({ openStartScreen }) {
   function handleClick() {
-    createNewProject();
+    openStartScreen();
   }
 
   return (

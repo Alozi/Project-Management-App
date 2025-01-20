@@ -1,6 +1,6 @@
-export default function Aside({ projects, createNewProject }) {
+export default function Aside({ projects, openStartScreen }) {
   function handleClick() {
-    createNewProject();
+    openStartScreen();
   }
 
   return (

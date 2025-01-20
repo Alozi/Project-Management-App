@@ -10,16 +10,20 @@ function App() {
   
   console.log(projects);
 
-  function createNewProject() {
+  function openStartScreen() {
     setIsStartSreenOpen(false);
+  }
+
+  function closeStartScreen() {
+    setIsStartSreenOpen(true);
   }
 
   return (
     <>
       <main className="h-screen my-8 flex gap-8">
-        <Aside projects={projects} createNewProject={createNewProject} />
-        {isStartSreenOpen && <StartScreen createNewProject={createNewProject} />}
-        {!isStartSreenOpen && <FormCreateProject projects={projects} setProjects={setProjects} />}
+        <Aside projects={projects} openStartScreen={openStartScreen} />
+        {isStartSreenOpen && <StartScreen openStartScreen={openStartScreen} />}
+        {!isStartSreenOpen && <FormCreateProject projects={projects} setProjects={setProjects} closeStartScreen={closeStartScreen} />}
       </main>
     </>
   );
