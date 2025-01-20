@@ -17,7 +17,7 @@ function App() {
   return (
     <>
       <main className="h-screen my-8 flex gap-8">
-        <Aside createNewProject={createNewProject} />
+        <Aside projects={projects} createNewProject={createNewProject} />
         {isStartSreenOpen && <StartScreen createNewProject={createNewProject} />}
         {!isStartSreenOpen && <FormCreateProject projects={projects} setProjects={setProjects} />}
       </main>
