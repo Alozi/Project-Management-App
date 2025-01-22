@@ -22,6 +22,7 @@ function App() {
     <>
       <main className="h-screen my-8 flex gap-8">
         <Aside projects={projects} openStartScreen={openStartScreen} />
+        <div id="container"></div>
         {isStartSreenOpen && <StartScreen openStartScreen={openStartScreen} />}
         {!isStartSreenOpen && <FormCreateProject projects={projects} setProjects={setProjects} closeStartScreen={closeStartScreen} />}
       </main>

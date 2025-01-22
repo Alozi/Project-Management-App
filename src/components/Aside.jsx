@@ -1,3 +1,5 @@
+import ProjectCard from "./ProjectCard";
+
 export default function Aside({ projects, openStartScreen }) {
   function handleClick() {
     openStartScreen();
@@ -17,12 +19,12 @@ export default function Aside({ projects, openStartScreen }) {
       <ul className="mt-8">
         {projects.map((item) => {
           return (
-            <button
-              key={item.title}
-              className="w-full text-left px-2 py-1 rounded-sm my-1 hover:text-stone-200 hover:bg-stone-800"
-            >
-              {item.title}
-            </button>
+            <div key={item.title}>
+              <ProjectCard projectData={item} />
+              <button className="w-full text-left px-2 py-1 rounded-sm my-1 hover:text-stone-200 hover:bg-stone-800">
+                {item.title}
+              </button>
+            </div>
           );
         })}
       </ul>
