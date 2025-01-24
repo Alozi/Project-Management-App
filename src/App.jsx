@@ -24,7 +24,7 @@ function App() {
         <Aside projects={projects} openStartScreen={openStartScreen} />
         <div id="container"></div>
         {isStartSreenOpen && <StartScreen openStartScreen={openStartScreen} />}
-        {!isStartSreenOpen && <FormCreateProject projects={projects} setProjects={setProjects} closeStartScreen={closeStartScreen} />}
+        {!isStartSreenOpen && <FormCreateProject setProjects={setProjects} closeStartScreen={closeStartScreen} />}
       </main>
     </>
   );

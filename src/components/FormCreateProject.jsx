@@ -1,10 +1,6 @@
 import { useRef } from "react";
 
-export default function FormCreateProject({
-  projects,
-  setProjects,
-  closeStartScreen,
-}) {
+export default function FormCreateProject({ setProjects, closeStartScreen }) {
   const projectTitle = useRef("");
   const projectDesc = useRef("");
   const projectDate = useRef("");
