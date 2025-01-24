@@ -1,8 +1,9 @@
 import Image from "../assets/no-projects.png";
 
-export default function StartScreen({ openStartScreen }) {
+export default function StartScreen({ closeStartScreen, openFormCreateProject }) {
   function handleClick() {
-    openStartScreen();
+    closeStartScreen();
+    openFormCreateProject();
   }
 
   return (

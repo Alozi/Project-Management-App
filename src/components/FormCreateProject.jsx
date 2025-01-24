@@ -1,6 +1,6 @@
 import { useRef } from "react";
 
-export default function FormCreateProject({ setProjects, closeStartScreen }) {
+export default function FormCreateProject({ setProjects, openStartScreen, closeFormCreateProject }) {
   const projectTitle = useRef("");
   const projectDesc = useRef("");
   const projectDate = useRef("");
@@ -22,12 +22,13 @@ export default function FormCreateProject({ setProjects, closeStartScreen }) {
         ];
       });
 
-      closeStartScreen();
+      openStartScreen();
+      closeFormCreateProject();
     }
   }
 
   function handleCancelClick() {
-    closeStartScreen();
+    closeFormCreateProject();
   }
 
   return (

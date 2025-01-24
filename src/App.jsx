@@ -6,25 +6,40 @@ import FormCreateProject from "./components/FormCreateProject";
 
 function App() {
   const [isStartSreenOpen, setIsStartSreenOpen] = useState(true);
+  const [isFormCreateProjectOpen, setIsFormCreateProjectOpen] = useState(false);
   const [projects, setProjects] = useState([]);
   
   console.log(projects);
 
+  console.log('isStartSreenOpen');
+  console.log(isStartSreenOpen);
+
+  console.log('isFormCreateProjectOpen');
+  console.log(isFormCreateProjectOpen);
+
   function openStartScreen() {
-    setIsStartSreenOpen(false);
+    setIsStartSreenOpen(true);
   }
 
   function closeStartScreen() {
-    setIsStartSreenOpen(true);
+    setIsStartSreenOpen(false);
+  }
+
+  function openFormCreateProject() {
+    setIsFormCreateProjectOpen(true);
+  }
+
+  function closeFormCreateProject() {
+    setIsFormCreateProjectOpen(false);
   }
 
   return (
     <>
       <main className="h-screen my-8 flex gap-8">
-        <Aside projects={projects} openStartScreen={openStartScreen} />
+        <Aside projects={projects} closeStartScreen={closeStartScreen} openFormCreateProject={openFormCreateProject} />
         <div id="container"></div>
-        {isStartSreenOpen && <StartScreen openStartScreen={openStartScreen} />}
-        {!isStartSreenOpen && <FormCreateProject setProjects={setProjects} closeStartScreen={closeStartScreen} />}
+        {isStartSreenOpen && <StartScreen closeStartScreen={closeStartScreen} openFormCreateProject={openFormCreateProject} />}
+        {isFormCreateProjectOpen && <FormCreateProject setProjects={setProjects} openStartScreen={openStartScreen} closeFormCreateProject={closeFormCreateProject} />}
       </main>
     </>
   );
