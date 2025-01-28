@@ -22,13 +22,14 @@ export default function FormCreateProject({ setProjects, openStartScreen, closeF
         ];
       });
 
-      openStartScreen();
       closeFormCreateProject();
+      openStartScreen();
     }
   }
 
   function handleCancelClick() {
     closeFormCreateProject();
+    openStartScreen();
   }
 
   return (

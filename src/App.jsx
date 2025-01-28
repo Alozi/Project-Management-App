@@ -8,14 +8,9 @@ function App() {
   const [isStartSreenOpen, setIsStartSreenOpen] = useState(true);
   const [isFormCreateProjectOpen, setIsFormCreateProjectOpen] = useState(false);
   const [projects, setProjects] = useState([]);
-  
+
+  console.log('projects');
   console.log(projects);
-
-  console.log('isStartSreenOpen');
-  console.log(isStartSreenOpen);
-
-  console.log('isFormCreateProjectOpen');
-  console.log(isFormCreateProjectOpen);
 
   function openStartScreen() {
     setIsStartSreenOpen(true);
@@ -36,10 +31,25 @@ function App() {
   return (
     <>
       <main className="h-screen my-8 flex gap-8">
-        <Aside projects={projects} closeStartScreen={closeStartScreen} openFormCreateProject={openFormCreateProject} />
+        <Aside
+          projects={projects}
+          closeStartScreen={closeStartScreen}
+          openFormCreateProject={openFormCreateProject}
+        />
+        {isStartSreenOpen && (
+          <StartScreen
+            closeStartScreen={closeStartScreen}
+            openFormCreateProject={openFormCreateProject}
+          />
+        )}
+        {isFormCreateProjectOpen && (
+          <FormCreateProject
+            setProjects={setProjects}
+            openStartScreen={openStartScreen}
+            closeFormCreateProject={closeFormCreateProject}
+          />
+        )}
         <div id="container"></div>
-        {isStartSreenOpen && <StartScreen closeStartScreen={closeStartScreen} openFormCreateProject={openFormCreateProject} />}
-        {isFormCreateProjectOpen && <FormCreateProject setProjects={setProjects} openStartScreen={openStartScreen} closeFormCreateProject={closeFormCreateProject} />}
       </main>
     </>
   );
