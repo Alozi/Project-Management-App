@@ -1,22 +1,26 @@
 import { createPortal } from "react-dom";
-import { useState } from "react";
+import { useImperativeHandle, useRef } from "react";
 
-export default function ProjectCard({ projectData }) {
-  // const [isProjectCardOpen, setIsProjectCardOpen] = useState(false);
+export default function ProjectCard({ ref, projectData }) {
+  const projectCard = useRef();
 
-  // function openProjectCard() {
-  //   setIsProjectCardOpen(true);
-  // }
+  console.log("projectData");
+  console.log(projectData);
 
-  // function closeProjectCard() {
-  //   setIsProjectCardOpen(false);
-  // }
+  useImperativeHandle(ref, () => {
+    return {
+      open() {
+        projectCard.current.className = '';
+        console.log('test');
+      },
+    };
+  });
 
-  // console.log("projectData");
-  // console.log(projectData);
+  console.log('ref');
+  console.log(ref);
 
-  // return createPortal(
-  //   <div className="hidden">createPortal {projectData.title}</div>,
-  //   document.getElementById("container")
-  // );
+  return createPortal(
+    <div ref={projectCard} className="hidden">createPortal {projectData.title} </div>,
+    document.getElementById("container")
+  );
 }

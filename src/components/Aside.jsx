@@ -1,3 +1,5 @@
+import { useRef } from "react";
+
 import ProjectCard from "./ProjectCard";
 
 export default function Aside({
@@ -5,9 +7,19 @@ export default function Aside({
   closeStartScreen,
   openFormCreateProject,
 }) {
+  const project = useRef();
+
   function handleClick() {
     closeStartScreen();
     openFormCreateProject();
+  }
+
+  function showProjectCard(title, desc, date) {
+    console.log('showProjectCard');
+    project.current.open();
+    // console.log(title);
+    // console.log(desc);
+    // console.log(date);
   }
 
   return (
@@ -25,8 +37,8 @@ export default function Aside({
         {projects.map((item) => {
           return (
             <div key={item.title}>
-              <ProjectCard projectData={item} />
-              <button className="w-full text-left px-2 py-1 rounded-sm my-1 hover:text-stone-200 hover:bg-stone-800">
+              <ProjectCard ref={project} projectData={item} />
+              <button onClick={showProjectCard} className="w-full text-left px-2 py-1 rounded-sm my-1 hover:text-stone-200 hover:bg-stone-800">
                 {item.title}
               </button>
             </div>
