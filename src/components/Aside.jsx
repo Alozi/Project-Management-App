@@ -2,6 +2,7 @@ import Project from "./Project";
 
 export default function Aside({
   projects,
+  setProjects,
   closeStartScreen,
   openFormCreateProject,
 }) {
@@ -25,7 +26,7 @@ export default function Aside({
         {projects.map((item) => {
           return (
             <div key={item.title}>
-              <Project item={item} />
+              <Project item={item} projects={projects} setProjects={setProjects} />
             </div>
           );
         })}

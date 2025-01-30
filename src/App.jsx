@@ -9,8 +9,8 @@ function App() {
   const [isFormCreateProjectOpen, setIsFormCreateProjectOpen] = useState(false);
   const [projects, setProjects] = useState([]);
 
-  console.log('projects');
-  console.log(projects);
+  // console.log('projects');
+  // console.log(projects);
 
   function openStartScreen() {
     setIsStartSreenOpen(true);
@@ -33,6 +33,7 @@ function App() {
       <main className="h-screen my-8 flex gap-8">
         <Aside
           projects={projects}
+          setProjects={setProjects}
           closeStartScreen={closeStartScreen}
           openFormCreateProject={openFormCreateProject}
         />

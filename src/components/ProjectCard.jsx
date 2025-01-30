@@ -1,7 +1,12 @@
 import { createPortal } from "react-dom";
 import { useImperativeHandle, useState, useRef } from "react";
 
-export default function ProjectCard({ ref, projectData }) {
+export default function ProjectCard({
+  ref,
+  projectData,
+  projects,
+  setProjects,
+}) {
   const [projectTasks, setProjectTasks] = useState([]);
   const projectCard = useRef();
   const newTask = useRef("");
@@ -41,8 +46,17 @@ export default function ProjectCard({ ref, projectData }) {
     setProjectTasks(updatedItems);
   }
 
-  function HandleDeleteProject() {
-    console.log('delete');
+  function HandleDeleteProject(title) {
+    for (let i = 0; i < projects.length; i++) {
+      if (projects[i].title === title) {
+        let indexToDelete = projects.indexOf(projects[i]);
+        const updatedItems = [
+          ...projects.slice(0, indexToDelete),
+          ...projects.slice(indexToDelete + 1),
+        ];
+        setProjects(updatedItems);
+      }
+    }
   }
 
   return createPortal(
@@ -50,7 +64,12 @@ export default function ProjectCard({ ref, projectData }) {
       <h1 className="text-xl font-bold text-stone-700 my-4">
         {projectData.title}
       </h1>
-      <button onClick={HandleDeleteProject} className="w-full text-left px-2 py-1 rounded-sm my-1 hover:text-stone-200 hover:bg-stone-800">Delete</button>
+      <button
+        onClick={() => HandleDeleteProject(projectData.title)}
+        className="w-full text-left px-2 py-1 rounded-sm my-1 hover:text-stone-200 hover:bg-stone-800"
+      >
+        Delete
+      </button>
       <h2 className="mb-8 font-bold uppercase md:text-xl text-stone-200">
         {projectData.date}
       </h2>
