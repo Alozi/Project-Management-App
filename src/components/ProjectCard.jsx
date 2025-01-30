@@ -14,9 +14,6 @@ export default function ProjectCard({ ref, projectData }) {
     };
   });
 
-  // console.log("projectTasks");
-  // console.log(projectTasks);
-
   function handleClick() {
     if (
       newTask.current.value != "" &&
@@ -44,11 +41,16 @@ export default function ProjectCard({ ref, projectData }) {
     setProjectTasks(updatedItems);
   }
 
+  function HandleDeleteProject() {
+    console.log('delete');
+  }
+
   return createPortal(
     <div ref={projectCard} className="hidden">
       <h1 className="text-xl font-bold text-stone-700 my-4">
         {projectData.title}
       </h1>
+      <button onClick={HandleDeleteProject} className="w-full text-left px-2 py-1 rounded-sm my-1 hover:text-stone-200 hover:bg-stone-800">Delete</button>
       <h2 className="mb-8 font-bold uppercase md:text-xl text-stone-200">
         {projectData.date}
       </h2>

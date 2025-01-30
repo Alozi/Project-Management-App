@@ -6,7 +6,6 @@ export default function Project({item}) {
   const project = useRef();
 
   function showProjectCard() {
-    console.log('showProjectCard');
     project.current.open();
   }
 
