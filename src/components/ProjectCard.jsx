@@ -35,6 +35,15 @@ export default function ProjectCard({ ref, projectData }) {
     newTask.current.value = "";
   }
 
+  function HandleClickClear(item) {
+    let indexToDelete = projectTasks.indexOf(item);
+    const updatedItems = [
+      ...projectTasks.slice(0, indexToDelete),
+      ...projectTasks.slice(indexToDelete + 1),
+    ];
+    setProjectTasks(updatedItems);
+  }
+
   return createPortal(
     <div ref={projectCard} className="hidden">
       <h1 className="text-xl font-bold text-stone-700 my-4">
@@ -57,17 +66,29 @@ export default function ProjectCard({ ref, projectData }) {
           Add Task
         </button>
       </div>
-      <div className="w-[35rem] mt-16">
-        <ul className="p-4 mt-8 rounded-md bg-stone-100">
-          {projectTasks.map((item) => {
-            return (
-              <li className="flex justify-between my-4" key={item}>
-                {item}
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+      {projectTasks.length > 0 ? (
+        <div className="w-[35rem] mt-16">
+          <ul className="p-4 mt-8 rounded-md bg-stone-100">
+            {projectTasks.map((item) => {
+              return (
+                <li className="flex justify-between my-4" key={item}>
+                  {item}
+                  <button
+                    onClick={() => {
+                      HandleClickClear(item);
+                    }}
+                    className="text-stone-700 hover:text-red-500"
+                  >
+                    Clear
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      ) : (
+        "This project does not have any task yet."
+      )}
     </div>,
     document.getElementById("container")
   );
