@@ -29,30 +29,28 @@ function App() {
   }
 
   return (
-    <>
-      <main className="h-screen my-8 flex gap-8">
-        <Aside
-          projects={projects}
-          setProjects={setProjects}
+    <main className="h-screen my-8 flex gap-8">
+      <Aside
+        projects={projects}
+        setProjects={setProjects}
+        closeStartScreen={closeStartScreen}
+        openFormCreateProject={openFormCreateProject}
+      />
+      {isStartSreenOpen && (
+        <StartScreen
           closeStartScreen={closeStartScreen}
           openFormCreateProject={openFormCreateProject}
         />
-        {isStartSreenOpen && (
-          <StartScreen
-            closeStartScreen={closeStartScreen}
-            openFormCreateProject={openFormCreateProject}
-          />
-        )}
-        {isFormCreateProjectOpen && (
-          <FormCreateProject
-            setProjects={setProjects}
-            openStartScreen={openStartScreen}
-            closeFormCreateProject={closeFormCreateProject}
-          />
-        )}
-        <div id="container"></div>
-      </main>
-    </>
+      )}
+      {isFormCreateProjectOpen && (
+        <FormCreateProject
+          setProjects={setProjects}
+          openStartScreen={openStartScreen}
+          closeFormCreateProject={closeFormCreateProject}
+        />
+      )}
+      <div id="container"></div>
+    </main>
   );
 }
 
