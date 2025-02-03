@@ -2,6 +2,9 @@ import Project from "./Project";
 import Button from "./Button";
 
 export default function Aside({
+  handleStartAddProject,
+
+
   projects,
   setProjects,
   closeStartScreen,
@@ -17,16 +20,14 @@ export default function Aside({
       <h2 className="mb-8 font-bold uppercase md:text-xl text-stone-200">
         Your Projects
       </h2>
-      <Button>+ Add Project</Button>
+      <Button onClick={handleStartAddProject}>
+        + Add Project
+      </Button>
       <ul className="mt-8">
-        {projects.map((item) => {
+        {projects?.map((item) => {
           return (
             <div key={item.title}>
-              <Project
-                item={item}
-                projects={projects}
-                setProjects={setProjects}
-              />
+              <Project item={item} projects={projects} setProjects={setProjects} />
             </div>
           );
         })}

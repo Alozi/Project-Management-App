@@ -2,6 +2,7 @@ import noProjectImage from "../assets/no-projects.png";
 import Button from "./Button";
 
 export default function NoProjectSelected({
+  handleStartAddProject,
   closeStartScreen,
   openFormCreateProject,
 }) {
@@ -24,7 +25,7 @@ export default function NoProjectSelected({
         Select a project or get started with a new one
       </p>
       <p className="mt-8">
-        <Button>Create new project</Button>
+        <Button onClick={handleStartAddProject}>Create new project</Button>
       </p>
     </div>
   );

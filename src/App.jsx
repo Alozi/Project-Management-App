@@ -5,32 +5,56 @@ import NoProjectSelected from "./components/NoProjectSelected";
 import FormCreateProject from "./components/FormCreateProject";
 
 function App() {
-  const [isStartSreenOpen, setIsStartSreenOpen] = useState(true);
-  const [isFormCreateProjectOpen, setIsFormCreateProjectOpen] = useState(false);
-  const [projects, setProjects] = useState([]);
+  const [projectsState, setProjectsState] = useState({
+    selectedProjectId: undefined,
+    projects: [],
+  });
 
-  // console.log('projects');
-  // console.log(projects);
-
-  function openStartScreen() {
-    setIsStartSreenOpen(true);
+  function handleStartAddProject() {
+    setProjectsState((prevState) => {
+      return { ...prevState, selectedProjectId: null };
+    });
   }
 
-  function closeStartScreen() {
-    setIsStartSreenOpen(false);
+  let content;
+
+  if (projectsState.selectedProjectId === null) {
+    content = <FormCreateProject />;
+  } else if (projectsState.selectedProjectId === undefined) {
+    content = (
+      <NoProjectSelected handleStartAddProject={handleStartAddProject} />
+    );
   }
 
-  function openFormCreateProject() {
-    setIsFormCreateProjectOpen(true);
-  }
+  // const [isStartSreenOpen, setIsStartSreenOpen] = useState(true);
+  // const [isFormCreateProjectOpen, setIsFormCreateProjectOpen] = useState(false);
+  // const [projects, setProjects] = useState([]);
 
-  function closeFormCreateProject() {
-    setIsFormCreateProjectOpen(false);
-  }
+  // // console.log('projects');
+  // // console.log(projects);
+
+  // function openStartScreen() {
+  //   setIsStartSreenOpen(true);
+  // }
+
+  // function closeStartScreen() {
+  //   setIsStartSreenOpen(false);
+  // }
+
+  // function openFormCreateProject() {
+  //   setIsFormCreateProjectOpen(true);
+  // }
+
+  // function closeFormCreateProject() {
+  //   setIsFormCreateProjectOpen(false);
+  // }
 
   return (
     <main className="h-screen my-8 flex gap-8">
-      <Aside
+      <Aside handleStartAddProject={handleStartAddProject} />
+      {content}
+
+      {/* <Aside
         projects={projects}
         setProjects={setProjects}
         closeStartScreen={closeStartScreen}
@@ -49,7 +73,7 @@ function App() {
           closeFormCreateProject={closeFormCreateProject}
         />
       )}
-      <div id="container"></div>
+      <div id="container"></div> */}
     </main>
   );
 }
