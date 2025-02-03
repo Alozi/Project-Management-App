@@ -10,16 +10,37 @@ function App() {
     projects: [],
   });
 
+  console.log(projectsState);
+
   function handleStartAddProject() {
     setProjectsState((prevState) => {
-      return { ...prevState, selectedProjectId: null };
+      return {
+        ...prevState,
+        selectedProjectId: null,
+      };
+    });
+  }
+
+  function handleAddProject(projectData) {
+    setProjectsState((prevState) => {
+
+      const newProject = {
+        ...projectData,
+        id: Math.random(),
+      };
+
+      return {
+        ...prevState,
+        selectedProjectId: undefined,
+        projects: [...prevState.projects, newProject]
+      };
     });
   }
 
   let content;
 
   if (projectsState.selectedProjectId === null) {
-    content = <FormCreateProject />;
+    content = <FormCreateProject onAdd={handleAddProject} />;
   } else if (projectsState.selectedProjectId === undefined) {
     content = (
       <NoProjectSelected handleStartAddProject={handleStartAddProject} />
@@ -51,7 +72,7 @@ function App() {
 
   return (
     <main className="h-screen my-8 flex gap-8">
-      <Aside handleStartAddProject={handleStartAddProject} />
+      <Aside handleStartAddProject={handleStartAddProject} projects={projectsState.projects} />
       {content}
 
       {/* <Aside

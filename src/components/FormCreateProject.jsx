@@ -3,6 +3,7 @@ import { useRef } from "react";
 import Input from "./Input";
 
 export default function FormCreateProject({
+  onAdd,
   setProjects,
   openStartScreen,
   closeFormCreateProject,
@@ -12,30 +13,40 @@ export default function FormCreateProject({
   const projectDate = useRef("");
 
   function handleSaveClick() {
-    if (
-      projectTitle.current.value != "" &&
-      projectDesc.current.value != "" &&
-      projectDate.current.value != ""
-    ) {
-      setProjects((prevProjects) => {
-        return [
-          ...prevProjects,
-          {
-            title: projectTitle.current.value,
-            desc: projectDesc.current.value,
-            date: projectDate.current.value,
-          },
-        ];
-      });
+    const enteredTitle = projectTitle.current.value;
+    const enteredDescription = projectDesc.current.value;
+    const enteredDate = projectDate.current.value;
 
-      closeFormCreateProject();
-      openStartScreen();
-    }
+    onAdd({
+      title: enteredTitle,
+      description: enteredDescription,
+      date: enteredDate,
+    });
+
+    // if (
+    //   projectTitle.current.value != "" &&
+    //   projectDesc.current.value != "" &&
+    //   projectDate.current.value != ""
+    // ) {
+    //   setProjects((prevProjects) => {
+    //     return [
+    //       ...prevProjects,
+    //       {
+    //         title: projectTitle.current.value,
+    //         desc: projectDesc.current.value,
+    //         date: projectDate.current.value,
+    //       },
+    //     ];
+    //   });
+
+    //   closeFormCreateProject();
+    //   openStartScreen();
+    // }
   }
 
   function handleCancelClick() {
-    closeFormCreateProject();
-    openStartScreen();
+    // closeFormCreateProject();
+    // openStartScreen();
   }
 
   return (
@@ -59,9 +70,9 @@ export default function FormCreateProject({
         </li>
       </menu>
       <div>
-        <Input label="Title*" type="text" />
-        <Input label="Description**" isTextarea={true} />
-        <Input label="Due Date*" type="date" />
+        <Input ref={projectTitle} label="Title*" type="text" />
+        <Input ref={projectDesc} label="Description**" isTextarea={true} />
+        <Input ref={projectDate} label="Due Date*" type="date" />
         {/* <p>
           <label className="text-sm font-bold uppercase text-stone-500">
             Title*
