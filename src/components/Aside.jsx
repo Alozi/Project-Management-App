@@ -1,4 +1,5 @@
 import Project from "./Project";
+import Button from "./Button";
 
 export default function Aside({
   projects,
@@ -16,17 +17,16 @@ export default function Aside({
       <h2 className="mb-8 font-bold uppercase md:text-xl text-stone-200">
         Your Projects
       </h2>
-      <button
-        onClick={handleClick}
-        className="px-4 py-2 text-xs md:text-base rounded-md bg-stone-700 text-stone-400 hover:bg-stone-600 hover:text-stone-100"
-      >
-        + Add Project
-      </button>
+      <Button>+ Add Project</Button>
       <ul className="mt-8">
         {projects.map((item) => {
           return (
             <div key={item.title}>
-              <Project item={item} projects={projects} setProjects={setProjects} />
+              <Project
+                item={item}
+                projects={projects}
+                setProjects={setProjects}
+              />
             </div>
           );
         })}

@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import Aside from "./components/Aside";
-import StartScreen from "./components/StartScreen";
+import NoProjectSelected from "./components/NoProjectSelected";
 import FormCreateProject from "./components/FormCreateProject";
 
 function App() {
@@ -37,7 +37,7 @@ function App() {
         openFormCreateProject={openFormCreateProject}
       />
       {isStartSreenOpen && (
-        <StartScreen
+        <NoProjectSelected
           closeStartScreen={closeStartScreen}
           openFormCreateProject={openFormCreateProject}
         />
