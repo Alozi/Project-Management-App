@@ -5,6 +5,7 @@ import Modal from "./Modal";
 
 export default function FormCreateProject({
   onAdd,
+  onCancel,
   setProjects,
   openStartScreen,
   closeFormCreateProject,
@@ -75,7 +76,7 @@ export default function FormCreateProject({
         <menu className="flex items-center justify-end gap-4 my-4">
           <li>
             <button
-              onClick={handleCancelClick}
+              onClick={onCancel}
               className="text-stone-800 hover:text-stone-950"
             >
               Cancel
