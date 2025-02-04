@@ -21,7 +21,7 @@ function App() {
     });
   }
 
-  function handleCancelAddProject(projectData) {
+  function handleCancelAddProject() {
     setProjectsState((prevState) => {
       return {
         ...prevState,
@@ -56,54 +56,10 @@ function App() {
     );
   }
 
-  // const [isStartSreenOpen, setIsStartSreenOpen] = useState(true);
-  // const [isFormCreateProjectOpen, setIsFormCreateProjectOpen] = useState(false);
-  // const [projects, setProjects] = useState([]);
-
-  // // console.log('projects');
-  // // console.log(projects);
-
-  // function openStartScreen() {
-  //   setIsStartSreenOpen(true);
-  // }
-
-  // function closeStartScreen() {
-  //   setIsStartSreenOpen(false);
-  // }
-
-  // function openFormCreateProject() {
-  //   setIsFormCreateProjectOpen(true);
-  // }
-
-  // function closeFormCreateProject() {
-  //   setIsFormCreateProjectOpen(false);
-  // }
-
   return (
     <main className="h-screen my-8 flex gap-8">
       <Aside handleStartAddProject={handleStartAddProject} projects={projectsState.projects} />
       {content}
-
-      {/* <Aside
-        projects={projects}
-        setProjects={setProjects}
-        closeStartScreen={closeStartScreen}
-        openFormCreateProject={openFormCreateProject}
-      />
-      {isStartSreenOpen && (
-        <NoProjectSelected
-          closeStartScreen={closeStartScreen}
-          openFormCreateProject={openFormCreateProject}
-        />
-      )}
-      {isFormCreateProjectOpen && (
-        <FormCreateProject
-          setProjects={setProjects}
-          openStartScreen={openStartScreen}
-          closeFormCreateProject={closeFormCreateProject}
-        />
-      )}
-      <div id="container"></div> */}
     </main>
   );
 }

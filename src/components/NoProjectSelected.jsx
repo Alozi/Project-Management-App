@@ -1,16 +1,7 @@
 import noProjectImage from "../assets/no-projects.png";
 import Button from "./Button";
 
-export default function NoProjectSelected({
-  handleStartAddProject,
-  closeStartScreen,
-  openFormCreateProject,
-}) {
-  function handleClick() {
-    closeStartScreen();
-    openFormCreateProject();
-  }
-
+export default function NoProjectSelected({ handleStartAddProject }) {
   return (
     <div className="mt-24 text-center w-2/3">
       <img

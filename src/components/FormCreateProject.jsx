@@ -34,31 +34,6 @@ export default function FormCreateProject({
       description: enteredDescription,
       date: enteredDate,
     });
-
-    // if (
-    //   projectTitle.current.value != "" &&
-    //   projectDesc.current.value != "" &&
-    //   projectDate.current.value != ""
-    // ) {
-    //   setProjects((prevProjects) => {
-    //     return [
-    //       ...prevProjects,
-    //       {
-    //         title: projectTitle.current.value,
-    //         desc: projectDesc.current.value,
-    //         date: projectDate.current.value,
-    //       },
-    //     ];
-    //   });
-
-    //   closeFormCreateProject();
-    //   openStartScreen();
-    // }
-  }
-
-  function handleCancelClick() {
-    // closeFormCreateProject();
-    // openStartScreen();
   }
 
   return (
@@ -95,35 +70,6 @@ export default function FormCreateProject({
           <Input ref={projectTitle} label="Title*" type="text" />
           <Input ref={projectDesc} label="Description**" isTextarea={true} />
           <Input ref={projectDate} label="Due Date*" type="date" />
-          {/* <p>
-          <label className="text-sm font-bold uppercase text-stone-500">
-            Title*
-          </label>
-          <input
-            ref={projectTitle}
-            type="text"
-            className="w-full p-1 border-b-2 rounded-sm border-stone-300 bg-stone-200 text-stone-600 focus:outline-none focus:border-stone-600"
-          />
-        </p>
-        <p>
-          <label className="text-sm font-bold uppercase text-stone-500">
-            Description*
-          </label>
-          <textarea
-            ref={projectDesc}
-            className="w-full p-1 border-b-2 rounded-sm border-stone-300 bg-stone-200 text-stone-600 focus:outline-none focus:border-stone-600"
-          />
-        </p>
-        <p>
-          <label className="text-sm font-bold uppercase text-stone-500">
-            Due Date*
-          </label>
-          <input
-            ref={projectDate}
-            type="date"
-            className="w-full p-1 border-b-2 rounded-sm border-stone-300 bg-stone-200 text-stone-600 focus:outline-none focus:border-stone-600"
-          />
-        </p> */}
         </div>
         <p className="mt-4 text-sm font-bold uppercase text-stone-500 text-right underline underline-offset-2">
           * - this input shoudn't be empty
