@@ -1,6 +1,7 @@
 import { useRef } from "react";
 
 import Input from "./Input";
+import Modal from "./Modal";
 
 export default function FormCreateProject({
   onAdd,
@@ -8,6 +9,7 @@ export default function FormCreateProject({
   openStartScreen,
   closeFormCreateProject,
 }) {
+  const modal = useRef();
   const projectTitle = useRef("");
   const projectDesc = useRef("");
   const projectDate = useRef("");
@@ -16,6 +18,15 @@ export default function FormCreateProject({
     const enteredTitle = projectTitle.current.value;
     const enteredDescription = projectDesc.current.value;
     const enteredDate = projectDate.current.value;
+
+    if (
+      enteredTitle.trim() === "" ||
+      enteredDescription.trim() === "" ||
+      enteredDate.trim() === ""
+    ) {
+      modal.current.open();
+      return;
+    }
 
     onAdd({
       title: enteredTitle,
@@ -50,30 +61,40 @@ export default function FormCreateProject({
   }
 
   return (
-    <div className="w-[35rem] mt-16">
-      <menu className="flex items-center justify-end gap-4 my-4">
-        <li>
-          <button
-            onClick={handleCancelClick}
-            className="text-stone-800 hover:text-stone-950"
-          >
-            Cancel
-          </button>
-        </li>
-        <li>
-          <button
-            onClick={handleSaveClick}
-            className="px-6 py-2 rounded-md bg-stone-800 text-stone-50 hover:bg-stone-950"
-          >
-            Save
-          </button>
-        </li>
-      </menu>
-      <div>
-        <Input ref={projectTitle} label="Title*" type="text" />
-        <Input ref={projectDesc} label="Description**" isTextarea={true} />
-        <Input ref={projectDate} label="Due Date*" type="date" />
-        {/* <p>
+    <>
+      <Modal ref={modal} buttonCaption="Close">
+        <h2 className="text-xl font-bold text-stone-700 my-4">Invalid Input</h2>
+        <p className="text-stone-600 mb-4">
+          Oops ... looks like you forgot to enter a value.
+        </p>
+        <p className="text-stone-600 mb-4">
+          Please make sure you provide a valid value for every input field.
+        </p>
+      </Modal>
+      <div className="w-[35rem] mt-16">
+        <menu className="flex items-center justify-end gap-4 my-4">
+          <li>
+            <button
+              onClick={handleCancelClick}
+              className="text-stone-800 hover:text-stone-950"
+            >
+              Cancel
+            </button>
+          </li>
+          <li>
+            <button
+              onClick={handleSaveClick}
+              className="px-6 py-2 rounded-md bg-stone-800 text-stone-50 hover:bg-stone-950"
+            >
+              Save
+            </button>
+          </li>
+        </menu>
+        <div>
+          <Input ref={projectTitle} label="Title*" type="text" />
+          <Input ref={projectDesc} label="Description**" isTextarea={true} />
+          <Input ref={projectDate} label="Due Date*" type="date" />
+          {/* <p>
           <label className="text-sm font-bold uppercase text-stone-500">
             Title*
           </label>
@@ -102,10 +123,11 @@ export default function FormCreateProject({
             className="w-full p-1 border-b-2 rounded-sm border-stone-300 bg-stone-200 text-stone-600 focus:outline-none focus:border-stone-600"
           />
         </p> */}
+        </div>
+        <p className="mt-4 text-sm font-bold uppercase text-stone-500 text-right underline underline-offset-2">
+          * - this input shoudn't be empty
+        </p>
       </div>
-      <p className="mt-4 text-sm font-bold uppercase text-stone-500 text-right underline underline-offset-2">
-        * - this input shoudn't be empty
-      </p>
-    </div>
+    </>
   );
 }
