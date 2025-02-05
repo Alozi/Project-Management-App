@@ -1,4 +1,3 @@
-import Project from "./Project";
 import Button from "./Button";
 
 export default function Aside({
